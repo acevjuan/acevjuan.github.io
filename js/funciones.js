@@ -34,6 +34,12 @@ function eliminarReceta() {
     console.table(recetasGuardadas);
 }
 
+function imprimirRecetas() {
+    for(let i = 0; i < recetasGuardadas.length; i++) {
+        console.log(`Para elaborar ${recetasGuardadas[i].volumen} litros (L) de la cerveza ${recetasGuardadas[i].nombre} con extracto original de ${recetasGuardadas[i].extractoOriginal * 100} ºP, se requiere ${recetasGuardadas[i].cantidadMalta} kg de cebada malteada`);
+    }
+}
+
 //Crear función que modifique recetas creadas. Usar como criterio de busqueda un condicional que pregunta si es por id o por nombre de la receta.
 
 //Crear función que describa de forma genérica cómo hacer la receta con una iteración a todos los elementos del objeto.
