@@ -18,8 +18,22 @@ function crearReceta() {
     console.table(recetasGuardadas);
 }
 
-//Crear función que modifique recetas creadas. Usar como criterio de busqueda un condicional que pregunta si es por id o por nombre de la receta.
+function eliminarReceta() {
+    let recetaEliminar = parseInt(prompt('Indicar el ID de la receta a eliminar'));
+    if (recetaEliminar < recetasGuardadas.length) {
+        let confirmacionEliminar = confirm('¿Eliminar receta?');
+        if(confirmacionEliminar === true) {
+            recetasGuardadas.splice(recetaEliminar, 1);
+            alert('Receta eliminada con éxito')
+        } else {
+            alert('Proceso finalizado. No existen cambios');
+        }
+    } else {
+        alert('Proceso finalizado. No existen cambios');
+    }
+    console.table(recetasGuardadas);
+}
 
-//Crear función que elimine recetas creadas. Usar como criterio de busqueda un condicional que pregunta si es por id o por nombre de la receta.
+//Crear función que modifique recetas creadas. Usar como criterio de busqueda un condicional que pregunta si es por id o por nombre de la receta.
 
 //Crear función que describa de forma genérica cómo hacer la receta con una iteración a todos los elementos del objeto.
