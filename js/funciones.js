@@ -51,7 +51,7 @@ function modificarReceta() {
     console.table(recetasGuardadas);
 }
 
-//Permite eliminar recetas en el array 2recetasGuardadas". indicar el índice dentro del array.
+//Permite eliminar recetas en el array "recetasGuardadas". indicar el índice dentro del array.
 function eliminarReceta() {
     let recetaEliminar = parseInt(prompt('Indicar el ID de la receta a eliminar'));
     if (recetaEliminar < recetasGuardadas.length) {
