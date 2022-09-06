@@ -1,14 +1,16 @@
+//Todas las recetas creadas serán almacenadas en este array como objetos.
 const recetasGuardadas = [
     {
         nombre: 'PILSEN',
-        extractoOriginal: 0.125,
-        volumen: 30500,
-        cantidadMalta: 5200,
-        extractoMalta: 0.8,
-        humedadMalta: 0.04
+        extractoOriginal: 0.125, //Porcentaje entre 0 y 1.
+        volumen: 30500, //Litros.
+        cantidadMalta: 5200, //Kilogramos.
+        extractoMalta: 0.8, //Porcentaje entre 0 y 1.
+        humedadMalta: 0.04 //Porcentaje entre 0 y 1.
     }
 ]
 
+//Para mostrar al abrir el navegador cuáles recetas están almacenadas en ese momento.
 console.table(recetasGuardadas);
 
 

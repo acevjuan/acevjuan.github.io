@@ -1,3 +1,4 @@
+//Clase para crear objetos dentro del array "recetasGuardadas". Se requiere dentro de la función "crearReceta".
 class Recetas {
     constructor(nombre, extractoOriginal, volumen, cantidadMalta, extractoMalta, humedadMalta) {
         this.nombre = nombre;
