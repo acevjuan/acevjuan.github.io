@@ -1,3 +1,31 @@
+function generarTablaDeRecetas() {
+    recetas.innerHTML = `
+        <tr class="recetas-guardadas__encabezado">
+            <th class="recetas-guardadas__encabezado__index">INDEX</th>
+            <th class="recetas-guardadas__encabezado__nombre">NOMBRE</th>
+            <th class="recetas-guardadas__encabezado__extracto-original">EXTRACTO ORIGINAL, ºP</th>
+            <th class="recetas-guardadas__encabezado__volumen">VOLUMEN, L</th>
+            <th class="recetas-guardadas__encabezado__cantidad-malta">CANTIDAD DE MALTA, kg</th>
+            <th class="recetas-guardadas__encabezado__extracto-malta">EXTRACTO DE MALTA, %</th>
+            <th class="recetas-guardadas__encabezado__humedad-malta">HUMEDAD DE MALTA, %</th>
+        </tr>`;
+    
+    recetasGuardadas.forEach(recetasGuardadas => {
+        let fila = "";
+            fila = `
+                    <tr class="recetas-guardadas__receta">
+                        <td class="recetas-guardadas__receta__index">prueba</td>
+                        <td class="recetas-guardadas__receta__nombre">${recetasGuardadas.nombre}</td>
+                        <td class="recetas-guardadas__receta__extracto-original">${recetasGuardadas.extractoOriginal}</td>
+                        <td class="recetas-guardadas__receta__volumen">${recetasGuardadas.volumen}</td>
+                        <td class="recetas-guardadas__receta__cantidad-malta">${recetasGuardadas.cantidadMalta}</td>
+                        <td class="recetas-guardadas__receta__extracto-malta">${recetasGuardadas.extractoMalta}</td>
+                        <td class="recetas-guardadas__receta__humedad-malta">${recetasGuardadas.humedadMalta}</td>
+                    </tr>`
+        recetas.innerHTML += fila;
+    })
+}
+
 //Realiza el cálculo de cebada malteada requerida para la receta deseada por el usuario y guarda la misma dentro del array "recetasGuardadas".
 function crearReceta() {
     let nombreCerveza = prompt('Indicar el nombre de la cerveza:');
@@ -17,6 +45,8 @@ function crearReceta() {
     alert('Receta creada con éxito.');
 
     console.table(recetasGuardadas);
+
+    generarTablaDeRecetas();
 }
 
 //Permite modificar recetas en el array "recetasGuardadas". Indicar el índice dentro del array.
@@ -49,6 +79,8 @@ function modificarReceta() {
         alert('Proceso finalizado. No existen cambios');
     }
     console.table(recetasGuardadas);
+
+    generarTablaDeRecetas();
 }
 
 //Permite eliminar recetas en el array "recetasGuardadas". indicar el índice dentro del array.
@@ -66,6 +98,8 @@ function eliminarReceta() {
         alert('Proceso finalizado. No existen cambios');
     }
     console.table(recetasGuardadas);
+
+    generarTablaDeRecetas();
 }
 
 //Muestra en la consola todas las recetas guardadas con un texto genérico describiendo cómo elaborarlas.
