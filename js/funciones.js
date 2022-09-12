@@ -1,28 +1,35 @@
 function generarTablaDeRecetas() {
     recetas.innerHTML = `
         <tr class="recetas-guardadas__encabezado">
-            <th class="recetas-guardadas__encabezado__index">INDEX</th>
+            <th class="recetas-guardadas__encabezado__index">NÚMERO</th>
             <th class="recetas-guardadas__encabezado__nombre">NOMBRE</th>
             <th class="recetas-guardadas__encabezado__extracto-original">EXTRACTO ORIGINAL, ºP</th>
             <th class="recetas-guardadas__encabezado__volumen">VOLUMEN, L</th>
             <th class="recetas-guardadas__encabezado__cantidad-malta">CANTIDAD DE MALTA, kg</th>
             <th class="recetas-guardadas__encabezado__extracto-malta">EXTRACTO DE MALTA, %</th>
             <th class="recetas-guardadas__encabezado__humedad-malta">HUMEDAD DE MALTA, %</th>
+            <th></th>
+            <th></th>
         </tr>`;
+    
+    let numFila = 1;
     
     recetasGuardadas.forEach(recetasGuardadas => {
         let fila = "";
             fila = `
-                    <tr class="recetas-guardadas__receta">
-                        <td class="recetas-guardadas__receta__index">prueba</td>
+                    <tr id="receta-${numFila}" class="recetas-guardadas__receta">
+                        <td class="recetas-guardadas__receta__index">${numFila}</td>
                         <td class="recetas-guardadas__receta__nombre">${recetasGuardadas.nombre}</td>
                         <td class="recetas-guardadas__receta__extracto-original">${recetasGuardadas.extractoOriginal}</td>
                         <td class="recetas-guardadas__receta__volumen">${recetasGuardadas.volumen}</td>
                         <td class="recetas-guardadas__receta__cantidad-malta">${recetasGuardadas.cantidadMalta}</td>
                         <td class="recetas-guardadas__receta__extracto-malta">${recetasGuardadas.extractoMalta}</td>
                         <td class="recetas-guardadas__receta__humedad-malta">${recetasGuardadas.humedadMalta}</td>
+                        <td class="recetas-guardadas__receta__modificar"><button class="btn btn-secondary btn-sm">Modificar receta</button></td>
+                        <td class="recetas-guardadas__receta__eliminar"><button class="btn btn-secondary btn-sm">Eliminar receta</button></td>
                     </tr>`
         recetas.innerHTML += fila;
+        numFila += 1;
     })
 }
 
