@@ -1,3 +1,17 @@
 *{
     font-family: 'Montserrat', sans-serif;
 }
+
+.botones {
+    padding: 25px 0;
+}
+
+.recetas-guardadas {
+    padding: 25px 0;
+    margin: 25px 0;
+}
+
+.instrucciones {
+    padding: 25px 0;
+    margin: 25px 0;
+}

@@ -1,7 +1,7 @@
 function generarTablaDeRecetas() {
     recetas.innerHTML = `
         <tr class="recetas-guardadas__encabezado">
-            <th class="recetas-guardadas__encabezado__index">NÚMERO</th>
+            <th class="recetas-guardadas__encabezado__index">ID</th>
             <th class="recetas-guardadas__encabezado__nombre">NOMBRE</th>
             <th class="recetas-guardadas__encabezado__extracto-original">EXTRACTO ORIGINAL, ºP</th>
             <th class="recetas-guardadas__encabezado__volumen">VOLUMEN, L</th>
@@ -25,9 +25,10 @@ function generarTablaDeRecetas() {
                         <td class="recetas-guardadas__receta__cantidad-malta">${recetasGuardadas.cantidadMalta}</td>
                         <td class="recetas-guardadas__receta__extracto-malta">${recetasGuardadas.extractoMalta}</td>
                         <td class="recetas-guardadas__receta__humedad-malta">${recetasGuardadas.humedadMalta}</td>
-                        <td class="recetas-guardadas__receta__modificar"><button class="btn btn-secondary btn-sm">Modificar receta</button></td>
-                        <td class="recetas-guardadas__receta__eliminar"><button class="btn btn-secondary btn-sm">Eliminar receta</button></td>
                     </tr>`
+                    // Incluir en el futuro botones destinados a eliminar y modificar recetas directamente en la table, sin necesidad de indicar el ID.
+                    // <td class="recetas-guardadas__receta__modificar"><button class="btn btn-secondary btn-sm">Modificar receta</button></td>
+                    // <td class="recetas-guardadas__receta__eliminar"><button class="btn btn-secondary btn-sm">Eliminar receta</button></td>
         recetas.innerHTML += fila;
         numFila += 1;
     })
@@ -58,7 +59,7 @@ function crearReceta() {
 
 //Permite modificar recetas en el array "recetasGuardadas". Indicar el índice dentro del array.
 function modificarReceta() {
-    let recetaModificar = parseInt(prompt('Indicar el ID de la receta a modificar'));
+    let recetaModificar = parseInt(prompt('Indicar el ID de la receta a modificar')) - 1;
     if (recetaModificar < recetasGuardadas.length) {
         let eo = parseFloat(prompt('¿Cuánto es el nuevo extracto original deseado? (entre 0 y 1):'));
         let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
@@ -92,7 +93,7 @@ function modificarReceta() {
 
 //Permite eliminar recetas en el array "recetasGuardadas". indicar el índice dentro del array.
 function eliminarReceta() {
-    let recetaEliminar = parseInt(prompt('Indicar el ID de la receta a eliminar'));
+    let recetaEliminar = parseInt(prompt('Indicar el ID de la receta a eliminar')) - 1;
     if (recetaEliminar < recetasGuardadas.length) {
         let confirmacionEliminar = confirm('¿Eliminar receta?');
         if(confirmacionEliminar === true) {

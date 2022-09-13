@@ -15,9 +15,11 @@
 <body>
     <h1>Calculador de receta de cervezas</h1>
 
-    <button id="boton-crear-receta" class="btn btn-secondary btn-sm">Crear receta</button>
-    <button id="boton-modificar-receta" class="btn btn-secondary btn-sm">Modificar receta</button>
-    <button id="boton-eliminar-receta" class="btn btn-secondary btn-sm">Eliminar receta</button>
+    <div class="botones">
+        <button id="boton-crear-receta" class="btn btn-secondary btn-sm">Crear receta</button>
+        <button id="boton-modificar-receta" class="btn btn-secondary btn-sm">Modificar receta</button>
+        <button id="boton-eliminar-receta" class="btn btn-secondary btn-sm">Eliminar receta</button>
+    </div>
 
     <table class="recetas-guardadas table">
         <thead>
@@ -33,14 +35,15 @@
         </thead>
     </table>
 
-    <div>
-        <p>Este programa permite crear, calcular y guardar recetas de cervezas. Actualmente, se debe ejecutar en la consola y funciona de la siguiente manera:</p>
+    <div class="instrucciones">
+        <h2>INSTRUCCIONES</h2>
+        <p>Este programa permite crear, calcular y guardar recetas de cervezas.</p>
         <ul>
             <li>Las recetas se encuentran guardadas en un array llamado "recetasCreadas". Cada receta es un objeto literal cuyas propiedas describen las características y especificaciones de la cerveza.</li>
-            <li>Para crear, calcular y guardar una nueva receta, ejecutar la función "crearReceta", la cual solicitará al usuario información necesaria para determinar la cantidad de cebada malteada requerida para hacer la cerveza deseada. Finalmente, creará un objeto dentro del array "recetasGuardadas", gracias a la clase "Recetas".</li>
+            <li>Para crear, calcular y guardar una nueva receta, hacer click en el botón "Crear receta", la cual solicitará al usuario información necesaria para determinar la cantidad de cebada malteada requerida para hacer la cerveza deseada. Finalmente, creará un objeto dentro del array "recetasGuardadas", gracias a la clase "Recetas".</li>
             <li>Para el cálculo mencionado en el punto de anterior, se definen como constantes la densidad del agua y la eficiencia de la sala de cocimiento o cervecería.</li>
-            <li>Para modificar alguna receta, utilizar la función "modificarReceta". Se requiere conocer el index del elemento en el array o receta que se desea modificar.</li>
-            <li>Para eliminar alguna receta, utilizar la función "eliminarReceta". Se requiere conocer el index del elemento en el array o recete que se desea eliminar.</li>
+            <li>Para modificar alguna receta, hacer click en el boton "Modificar receta". Se requiere indicar el ID de la receta que se desea modificar, la cual aparece en la misma tabla.</li>
+            <li>Para eliminar alguna receta, hacer click en el boton "Eliminar receta". Se requiere indicar el ID de la receta que se desea modificar, la cual aparece en la misma tabla.</li>
             <li>Para mostrar en la consola todas las recetas, utilizar función "imprimirReceta".</li>
         </ul>
 
@@ -55,6 +58,7 @@
     <script src="js/variables.js"></script>
     <script src="js/clases.js"></script>
     <script src="js/funciones.js"></script>
+    <script src="js/eventos.js"></script>
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
