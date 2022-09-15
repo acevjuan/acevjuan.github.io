@@ -25,12 +25,22 @@ function generarTablaDeRecetas() {
                         <td class="recetas-guardadas__receta__cantidad-malta">${recetasGuardadas.cantidadMalta}</td>
                         <td class="recetas-guardadas__receta__extracto-malta">${recetasGuardadas.extractoMalta}</td>
                         <td class="recetas-guardadas__receta__humedad-malta">${recetasGuardadas.humedadMalta}</td>
+                        <td id="btn-mod-${numFila}"><button class="btn btn-secondary btn-sm">Modificar</button></td>
+                        <td id="btn-eli-${numFila}"><button class="btn btn-secondary btn-sm">Eliminar</button></td>
                     </tr>`
-                    // Incluir en el futuro botones destinados a eliminar y modificar recetas directamente en la table, sin necesidad de indicar el ID.
-                    // <td class="recetas-guardadas__receta__modificar"><button class="btn btn-secondary btn-sm">Modificar receta</button></td>
-                    // <td class="recetas-guardadas__receta__eliminar"><button class="btn btn-secondary btn-sm">Eliminar receta</button></td>
+
         recetas.innerHTML += fila;
         numFila += 1;
+
+        // const btnModificar = document.querySelector(`#btn-mod-${numFila}`);
+        // btnModificar.addEventListener('click', () => {
+        //     console.log('Funciona');
+        // });
+            
+        // const btnEliminar = document.querySelector(`#btn-eli-${numFila}`);
+        // btnEliminar.addEventListener('click', () => {
+        //     console.log('Funciona');
+        // });
     })
 }
 
