@@ -1,5 +1,5 @@
 //Todas las recetas creadas serán almacenadas en este array como objetos.
-const recetasGuardadas = [
+let recetasGuardadas = [
     //Ejemplo de receta.
     // {
     //     nombre: 'PILSEN',
@@ -10,3 +10,10 @@ const recetasGuardadas = [
     //     humedadMalta: 0.04 //Porcentaje entre 0 y 1.
     // }
 ]
+
+//Sincronización del Local Storage con el array 'recetasGuardadas'.
+let recetasGuardadasLS = JSON.parse(localStorage.getItem('listadoRecetas'));
+
+if (recetasGuardadasLS) {
+    recetasGuardadas = recetasGuardadasLS;
+}

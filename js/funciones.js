@@ -1,6 +1,11 @@
-const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
+//Guarda la información generada en la creación, modificación o eliminación de recetas.
+function guardarLocal(clave, valor) { 
+     localStorage.setItem(clave, valor);
+}
 
+//Genera tabla en archivo HTML.
 function generarTablaDeRecetas() {
+
     recetas.innerHTML = `
         <tr class="recetas-guardadas__encabezado">
             <th class="recetas-guardadas__encabezado__index">ID</th>
@@ -60,15 +65,18 @@ function crearReceta() {
     //Cálculo de cantidad de malta necesaria para la receta (kilogramos).
     let cantMal = (vol * sg * densidadAgua * eo) / (extMal * (1 - hMal) * eficiencia);
 
+    // recetasGuardadas.push(new Recetas(nombreCerveza, eo, vol, cantMal, extMal, hMal));
+
     recetasGuardadas.push(new Recetas(nombreCerveza, eo, vol, cantMal, extMal, hMal));
 
     alert('Receta creada con éxito.');
 
-    guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
-
     console.table(recetasGuardadas);
 
+    guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
+
     generarTablaDeRecetas();
+
 }
 
 //Permite modificar recetas en el array "recetasGuardadas". Indicar el índice dentro del array.
