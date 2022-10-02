@@ -7,3 +7,6 @@ botonModificar.addEventListener('click', modificarReceta);
 
 const botonEliminar = document.querySelector('#boton-eliminar-receta');
 botonEliminar.addEventListener('click', eliminarReceta);
+
+const sweet = document.querySelector('#sa');
+sweet.addEventListener('click', () => Swal.fire('Any fool can use a computer'));

@@ -7,22 +7,24 @@ function guardarLocal(clave, valor) {
 function generarTablaDeRecetas() {
 
     recetas.innerHTML = `
-        <tr class="recetas-guardadas__encabezado">
-            <th class="recetas-guardadas__encabezado__index">ID</th>
-            <th class="recetas-guardadas__encabezado__nombre">NOMBRE</th>
-            <th class="recetas-guardadas__encabezado__extracto-original">EXTRACTO ORIGINAL, ºP</th>
-            <th class="recetas-guardadas__encabezado__volumen">VOLUMEN, L</th>
-            <th class="recetas-guardadas__encabezado__cantidad-malta">CANTIDAD DE MALTA, kg</th>
-            <th class="recetas-guardadas__encabezado__extracto-malta">EXTRACTO DE MALTA, %</th>
-            <th class="recetas-guardadas__encabezado__humedad-malta">HUMEDAD DE MALTA, %</th>
-            <th></th>
-            <th></th>
-        </tr>`;
+        <thead>
+            <tr class="recetas-guardadas__encabezado">
+                <th class="recetas-guardadas__encabezado__index">ID</th>
+                <th class="recetas-guardadas__encabezado__nombre">NOMBRE</th>
+                <th class="recetas-guardadas__encabezado__extracto-original">EXTRACTO ORIGINAL, ºP</th>
+                <th class="recetas-guardadas__encabezado__volumen">VOLUMEN, L</th>
+                <th class="recetas-guardadas__encabezado__cantidad-malta">CANTIDAD DE MALTA, kg</th>
+                <th class="recetas-guardadas__encabezado__extracto-malta">EXTRACTO DE MALTA, %</th>
+                <th class="recetas-guardadas__encabezado__humedad-malta">HUMEDAD DE MALTA, %</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>`;
     
     let numFila = 1;
     
     recetasGuardadas.forEach(rec => {
-        let fila = "";
+        let fila = document.createElement('div');
             fila = `
                     <tr id="receta-${numFila}" class="recetas-guardadas__receta">
                         <td class="recetas-guardadas__receta__index">${numFila}</td>
@@ -35,7 +37,7 @@ function generarTablaDeRecetas() {
                         <td id="btn-mod-${numFila}"><button class="btn btn-secondary btn-sm">Modificar</button></td>
                         <td id="btn-eli-${numFila}"><button class="btn btn-secondary btn-sm">Eliminar</button></td>
                     </tr>`
-
+        
         recetas.innerHTML += fila;
         numFila += 1;
 
@@ -49,6 +51,14 @@ function generarTablaDeRecetas() {
         //     console.log('Funciona');
         // });
     })
+
+    recetasGuardadas.forEach(rects => {
+        let btnMod = document.querySelector(`#btn-mod-${numFila}`);
+        btnMod.addEventListener('click', () => console.log('Funciona'));
+
+        numFila += 1;
+    })
+
 }
 
 //Realiza el cálculo de cebada malteada requerida para la receta deseada por el usuario y guarda la misma dentro del array "recetasGuardadas".
@@ -75,7 +85,7 @@ function crearReceta() {
 
     recetasGuardadas.push(new Recetas(nombreCerveza, eo, vol, cantMal, extMal, hMal));
 
-    alert('Receta creada con éxito.');
+    Swal.fire('Receta creada con éxtito')
 
     console.table(recetasGuardadas);
 
@@ -112,12 +122,13 @@ function modificarReceta() {
 
             guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
 
-            alert('Receta modificada con éxito')
+            Swal.fire('Receta modificada con éxito');
+            
         } else {
-            alert('Proceso finalizado. No existen cambios');
+            Swal.fire('Proceso finalizado. No existen cambios');
         }
     } else {
-        alert('Proceso finalizado. No existen cambios');
+        Swal.fire('Proceso finalizado. No existen cambios');
     }
     console.table(recetasGuardadas);
 
@@ -133,12 +144,12 @@ function eliminarReceta() {
             localStorage.removeItem('listadoRecetas');
             recetasGuardadas.splice(recetaEliminar, 1);
             guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
-            alert('Receta eliminada con éxito')
+            Swal.fire('Receta eliminada con éxito');
         } else {
-            alert('Proceso finalizado. No existen cambios');
+            Swal.fire('Proceso finalizado. No existen cambios');
         }
     } else {
-        alert('Proceso finalizado. No existen cambios');
+        Swal.fire('Proceso finalizado. No existen cambios');
     }
     console.table(recetasGuardadas);
 
