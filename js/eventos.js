@@ -1,5 +1,5 @@
 
-const botonCrear = document.querySelector('#boton-crear-receta');
+const botonCrear = document.querySelector('#boton-crear-receta-enviar');
 botonCrear.addEventListener('click', crearReceta);
 
 const botonModificar = document.querySelector('#boton-modificar-receta');

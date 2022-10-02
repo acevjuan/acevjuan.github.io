@@ -53,17 +53,23 @@ function generarTablaDeRecetas() {
 
 //Realiza el cálculo de cebada malteada requerida para la receta deseada por el usuario y guarda la misma dentro del array "recetasGuardadas".
 function crearReceta() {
-    let nombreCerveza = prompt('Indicar el nombre de la cerveza:');
-    let eo = parseFloat(prompt('¿Cuánto es el extracto original deseado? (entre 0 y 1):'));
-    let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
-    let extMal = parseFloat(prompt('¿Cuál es el extracto de la malta a utilizar? (entre 0 y 1):'));
-    let hMal = parseFloat(prompt('¿Cuál es la humedad de la malta? (entre 0 y 1):'));
+    // let nombreCerveza = prompt('Indicar el nombre de la cerveza:');
+    // let eo = parseFloat(prompt('¿Cuánto es el extracto original deseado? (entre 0 y 1):'));
+    // let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
+    // let extMal = parseFloat(prompt('¿Cuál es el extracto de la malta a utilizar? (entre 0 y 1):'));
+    // let hMal = parseFloat(prompt('¿Cuál es la humedad de la malta? (entre 0 y 1):'));
+
+    let nombreCerveza = document.querySelector('#nombre').value;
+    let eo = document.querySelector('#extracto').value / 100;
+    let vol = document.querySelector('#volumen').value;
+    let extMal = document.querySelector('#ext-mal').value / 100;
+    let hMal = document.querySelector('#humedad').value / 100;
 
     //Calculo de gravedad específica.
     let sg = ((eo * 4)/1000) + 1
 
     //Cálculo de cantidad de malta necesaria para la receta (kilogramos).
-    let cantMal = (vol * sg * densidadAgua * eo) / (extMal * (1 - hMal) * eficiencia);
+    let cantMal = Math.round((vol * sg * densidadAgua * eo) / (extMal * (1 - hMal) * eficiencia));
 
     // recetasGuardadas.push(new Recetas(nombreCerveza, eo, vol, cantMal, extMal, hMal));
 

@@ -16,9 +16,49 @@
     <h1>Calculador de receta de cervezas</h1>
 
     <div class="botones">
-        <button id="boton-crear-receta" class="btn btn-secondary btn-sm">Crear receta</button>
+        <a class="btn btn-secondary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Crear receta
+        </a>
         <button id="boton-modificar-receta" class="btn btn-secondary btn-sm">Modificar receta</button>
         <button id="boton-eliminar-receta" class="btn btn-secondary btn-sm">Eliminar receta</button>
+        
+        <!-- CREACIÓN DE RECETA -->
+        <div class="collapse" id="collapseExample">
+            <form>
+                <div class="row mb-3">
+                  <label for="nombre" class="col-sm-2 col-form-label">Nombre de la cerveza</label>
+                  <div class="col-sm-10">
+                    <input id="nombre" type="text" class="form-control" autocomplete="off">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="extracto" class="col-sm-2 col-form-label">Extracto original, ºP</label>
+                    <div class="col-sm-10">
+                      <input id="extracto" type="number" min='1' max='100' class="form-control" autocomplete="off">
+                    </div>
+                  </div>
+                <div class="row mb-3">
+                    <label for="volumen" class="col-sm-2 col-form-label">Volumen, L</label>
+                    <div class="col-sm-10">
+                      <input id="volumen" type="number" class="form-control" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="ext-mal" class="col-sm-2 col-form-label">Extracto de malta, %</label>
+                    <div class="col-sm-10">
+                      <input id="ext-mal" type="number" class="form-control" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="humedad" class="col-sm-2 col-form-label">Humedad de malta, %</label>
+                    <div class="col-sm-10">
+                      <input id="humedad" type="number" class="form-control" autocomplete="off">
+                    </div>
+                </div>
+            </form>
+            <button id="boton-crear-receta-enviar" class="btn btn-secondary btn-sm">Crear</button>
+            <button id="boton-crear-receta-cancelar" class="btn btn-secondary btn-sm">Cancelar</button>
+        </div>
     </div>
 
     <table class="recetas-guardadas table">
