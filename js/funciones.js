@@ -6,59 +6,56 @@ function guardarLocal(clave, valor) {
 //Genera tabla en archivo HTML.
 function generarTablaDeRecetas() {
 
-    recetas.innerHTML = `
-        <thead>
-            <tr class="recetas-guardadas__encabezado">
-                <th class="recetas-guardadas__encabezado__index">ID</th>
-                <th class="recetas-guardadas__encabezado__nombre">NOMBRE</th>
-                <th class="recetas-guardadas__encabezado__extracto-original">EXTRACTO ORIGINAL, ºP</th>
-                <th class="recetas-guardadas__encabezado__volumen">VOLUMEN, L</th>
-                <th class="recetas-guardadas__encabezado__cantidad-malta">CANTIDAD DE MALTA, kg</th>
-                <th class="recetas-guardadas__encabezado__extracto-malta">EXTRACTO DE MALTA, %</th>
-                <th class="recetas-guardadas__encabezado__humedad-malta">HUMEDAD DE MALTA, %</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>`;
+    recetas.innerHTML = ""; 
+
+    let encabezadoRecetas = document.createElement('thead');
+    encabezadoRecetas.innerHTML = `
+             <tr class="recetas-guardadas__encabezado">
+                 <th class="recetas-guardadas__encabezado__index">ID</th>
+                 <th class="recetas-guardadas__encabezado__nombre">NOMBRE</th>
+                 <th class="recetas-guardadas__encabezado__extracto-original">EXTRACTO ORIGINAL, ºP</th>
+                 <th class="recetas-guardadas__encabezado__volumen">VOLUMEN, L</th>
+                 <th class="recetas-guardadas__encabezado__cantidad-malta">CANTIDAD DE MALTA, kg</th>
+                 <th class="recetas-guardadas__encabezado__extracto-malta">EXTRACTO DE MALTA, %</th>
+                 <th class="recetas-guardadas__encabezado__humedad-malta">HUMEDAD DE MALTA, %</th>
+                 <th></th>
+                 <th></th>
+             </tr> `
     
+    recetas.appendChild(encabezadoRecetas);
+
     let numFila = 1;
-    
+
     recetasGuardadas.forEach(rec => {
-        let fila = document.createElement('div');
-            fila = `
-                    <tr id="receta-${numFila}" class="recetas-guardadas__receta">
-                        <td class="recetas-guardadas__receta__index">${numFila}</td>
-                        <td class="recetas-guardadas__receta__nombre">${rec.nombre}</td>
-                        <td class="recetas-guardadas__receta__extracto-original">${rec.extractoOriginal}</td>
-                        <td class="recetas-guardadas__receta__volumen">${rec.volumen}</td>
-                        <td class="recetas-guardadas__receta__cantidad-malta">${rec.cantidadMalta}</td>
-                        <td class="recetas-guardadas__receta__extracto-malta">${rec.extractoMalta}</td>
-                        <td class="recetas-guardadas__receta__humedad-malta">${rec.humedadMalta}</td>
-                        <td id="btn-mod-${numFila}"><button class="btn btn-secondary btn-sm">Modificar</button></td>
-                        <td id="btn-eli-${numFila}"><button class="btn btn-secondary btn-sm">Eliminar</button></td>
-                    </tr>`
+        let container = document.createElement('tbody');
+        container.innerHTML  = `
+                <tr id="receta-${numFila}" class="recetas-guardadas__receta">
+                    <td class="recetas-guardadas__receta__index">${numFila}</td>
+                    <td class="recetas-guardadas__receta__nombre">${rec.nombre}</td>
+                    <td class="recetas-guardadas__receta__extracto-original">${rec.extractoOriginal}</td>
+                    <td class="recetas-guardadas__receta__volumen">${rec.volumen}</td>
+                    <td class="recetas-guardadas__receta__cantidad-malta">${rec.cantidadMalta}</td>
+                    <td class="recetas-guardadas__receta__extracto-malta">${rec.extractoMalta}</td>
+                    <td class="recetas-guardadas__receta__humedad-malta">${rec.humedadMalta}</td>
+                    <td><button id="btn-mod-${numFila}" class="btn btn-secondary btn-sm">Modificar</button></td>
+                    <td><button id="btn-eli-${numFila}" class="btn btn-secondary btn-sm">Eliminar</button></td>
+                </tr>`
+        recetas.appendChild(container);
         
-        recetas.innerHTML += fila;
-        numFila += 1;
-
-        // const btnModificar = document.querySelector(`#btn-mod-${numFila}`);
-        // btnModificar.addEventListener('click', () => {
-        //     console.log('Funciona');
-        // });
-            
-        // const btnEliminar = document.querySelector(`#btn-eli-${numFila}`);
-        // btnEliminar.addEventListener('click', () => {
-        //     console.log('Funciona');
-        // });
+        numFila++;
     })
 
-    recetasGuardadas.forEach(rects => {
-        let btnMod = document.querySelector(`#btn-mod-${numFila}`);
-        btnMod.addEventListener('click', () => console.log('Funciona'));
 
-        numFila += 1;
-    })
 
+    for(let i = 1; i <= recetasGuardadas.length; i++) {
+        let btnMod = document.querySelector(`#btn-mod-${i}`);
+        btnMod = addEventListener('click', () => console.log('Funciona'));
+    }    
+    
+    for(let j = 1; j <= recetasGuardadas.length; j++) {
+        let btnEli = document.querySelector(`#btn-eli-${j}`);
+        btnEli = addEventListener('click', () => console.log('Tambien funciona'));
+    }
 }
 
 //Realiza el cálculo de cebada malteada requerida para la receta deseada por el usuario y guarda la misma dentro del array "recetasGuardadas".
