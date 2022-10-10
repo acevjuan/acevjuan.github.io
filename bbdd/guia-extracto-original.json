@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "nombreEstilo": "Pilsen",
+        "extractoOriginalMin": 11,
+        "extractoOriginalMax": 12.4
+    },
+
+    {
+        "id": 2,
+        "nombreEstilo": "Belgian Golden Strong Ale",
+        "extractoOriginalMin": 17.1,
+        "extractoOriginalMax": 22.7
+    },
+
+    {
+        "id": 3,
+        "nombreEstilo": "Brown Ale",
+        "extractoOriginalMin": 10,
+        "extractoOriginalMax": 12.9
+    },
+
+    {
+        "id": 4,
+        "nombreEstilo": "IPA",
+        "extractoOriginalMin": 12.4,
+        "extractoOriginalMax": 18.2
+    },
+
+    {
+        "id": 5,
+        "nombreEstilo": "Porter",
+        "extractoOriginalMin": 10,
+        "extractoOriginalMax": 12.9
+    },
+
+    {
+        "id": 6,
+        "nombreEstilo": "Stout",
+        "extractoOriginalMin": 9,
+        "extractoOriginalMax": 11
+    },
+
+    {
+        "id": 7,
+        "nombreEstilo": "Weißbier",
+        "extractoOriginalMin": 11,
+        "extractoOriginalMax": 12.4
+    },
+
+    {
+        "id": 8,
+        "nombreEstilo": "Kölsch",
+        "extractoOriginalMin": 11,
+        "extractoOriginalMax": 12.4
+    },
+
+    {
+        "id": 9,
+        "nombreEstilo": "Red Ale",
+        "extractoOriginalMin": 9,
+        "extractoOriginalMax": 11.4
+    }
+
+]
