@@ -26,10 +26,10 @@ function generarTablaDeRecetas() {
     
     recetas.appendChild(encabezadoRecetas);
 
-    let numFila = 1;
-
-    recetasGuardadas.forEach(rec => {
+    
+    recetasGuardadas.forEach((rec, index) => {
         let container = document.createElement('tbody');
+        let numFila = index + 1;
         container.innerHTML  = `
                 <tr id="receta-${numFila}" class="recetas-guardadas__receta">
                     <td class="recetas-guardadas__receta__index">${numFila}</td>
@@ -40,13 +40,15 @@ function generarTablaDeRecetas() {
                     <td class="recetas-guardadas__receta__extracto-malta">${rec.extractoMalta}</td>
                     <td class="recetas-guardadas__receta__humedad-malta">${rec.humedadMalta}</td>
                     <td><button id="btn-mod-${numFila}" class="btn btn-secondary btn-sm">Modificar</button></td>
-                    <td><button id="btn-eli-${numFila}" class="btn btn-secondary btn-sm">Eliminar</button></td>
+                    <td><button id="btn-eli-${numFila}" value="${numFila}" class="btn btn-secondary btn-sm">Eliminar</button></td>
                 </tr>`
         recetas.appendChild(container);
-        
-        numFila++;
-    })
 
+        const btnEliminar = document.querySelector(`#btn-eli-${numFila}`);
+        btnEliminar.addEventListener('click', () => {
+            deleteFromStorage(index)
+        })
+    })
 
 
     for(let i = 1; i <= recetasGuardadas.length; i++) {
@@ -138,25 +140,13 @@ function modificarReceta() {
     generarTablaDeRecetas();
 }
 
-//Permite eliminar recetas en el array "recetasGuardadas". indicar el índice dentro del array.
-function eliminarReceta() {
-    let recetaEliminar = parseInt(prompt('Indicar el ID de la receta a eliminar')) - 1;
-    if (recetaEliminar < recetasGuardadas.length) {
-        let confirmacionEliminar = confirm('¿Eliminar receta?');
-        if(confirmacionEliminar === true) {
-            localStorage.removeItem('listadoRecetas');
-            recetasGuardadas.splice(recetaEliminar, 1);
-            guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
-            Swal.fire('Receta eliminada con éxito');
-        } else {
-            Swal.fire('Proceso finalizado. No existen cambios');
-        }
-    } else {
-        Swal.fire('Proceso finalizado. No existen cambios');
-    }
-    console.table(recetasGuardadas);
-
-    generarTablaDeRecetas();
+//Permite eliminar recetas en el array "recetasGuardadas". Se agrega como evento a su botón de eliminar correspondiente.
+function deleteFromStorage (recetaEliminar) {
+    localStorage.removeItem('listadoRecetas');
+    recetasGuardadas.splice(recetaEliminar, 1);
+    guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
+    Swal.fire('Receta eliminada con éxito');
+    generarTablaDeRecetas()
 }
 
 //Muestra en la consola todas las recetas guardadas con un texto genérico describiendo cómo elaborarlas.
