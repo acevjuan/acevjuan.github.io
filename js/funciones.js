@@ -1,9 +1,11 @@
-//Guarda la información generada en la creación, modificación o eliminación de recetas.
+//Guarda la información generada en la creación, modificación o eliminación de recetas en el Local Storage
+//"guardarLocal" se ejecuta dentro de las demás funciones cada vez que exista alguna modificación en el array "recetasGuardadas"
 function guardarLocal(clave, valor) { 
      localStorage.setItem(clave, valor);
 }
 
-//Genera tabla en archivo HTML.
+//Genera tabla para visualizar en aplicación
+//generarTablaDeRecteas se ejecuta dentro de las demás funciones cada vez que exista alguna modificación en el array "recetasGuardadas"
 function generarTablaDeRecetas() {
 
     recetas.innerHTML = ""; 
@@ -60,12 +62,14 @@ function generarTablaDeRecetas() {
 
 //Realiza el cálculo de cebada malteada requerida para la receta deseada por el usuario y guarda la misma dentro del array "recetasGuardadas".
 function crearReceta() {
-    // let nombreCerveza = prompt('Indicar el nombre de la cerveza:');
-    // let eo = parseFloat(prompt('¿Cuánto es el extracto original deseado? (entre 0 y 1):'));
-    // let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
-    // let extMal = parseFloat(prompt('¿Cuál es el extracto de la malta a utilizar? (entre 0 y 1):'));
-    // let hMal = parseFloat(prompt('¿Cuál es la humedad de la malta? (entre 0 y 1):'));
+    //Al inicio del proyecto, los datos para el cálculo de recetas se introducían por medio de prompts. Esta opción fue reemplazada por medio de un formulario, sin embargo, se deja como guía en caso de que se vaya a usar alguna librería que funcione de forma similar.
+        // let nombreCerveza = prompt('Indicar el nombre de la cerveza:');
+        // let eo = parseFloat(prompt('¿Cuánto es el extracto original deseado? (entre 0 y 1):'));
+        // let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
+        // let extMal = parseFloat(prompt('¿Cuál es el extracto de la malta a utilizar? (entre 0 y 1):'));
+        // let hMal = parseFloat(prompt('¿Cuál es la humedad de la malta? (entre 0 y 1):'));
 
+    //Obtención de datos ingresados por el usuario para el cálculo de receta
     let nombreCerveza = document.querySelector('#nombre').value;
     let eo = document.querySelector('#extracto').value / 100;
     let vol = document.querySelector('#volumen').value;
@@ -78,18 +82,20 @@ function crearReceta() {
     //Cálculo de cantidad de malta necesaria para la receta (kilogramos).
     let cantMal = Math.round((vol * sg * densidadAgua * eo) / (extMal * (1 - hMal) * eficiencia));
 
-    // recetasGuardadas.push(new Recetas(nombreCerveza, eo, vol, cantMal, extMal, hMal));
-
+    //Inclusión de receta calculada dentro del array principal "recetasGuardadas"
     recetasGuardadas.push(new Recetas(nombreCerveza, eo, vol, cantMal, extMal, hMal));
 
+    //Alerta/notificación de proceso de creación de receta exitoso.
     Swal.fire('Receta creada con éxtito')
 
+    //Visualización en consola array. Opcional para el funcionamiento de la aplicación, utilizado para debugging.
     console.table(recetasGuardadas);
 
+    //Almacenar nueva receta/array modificado en el local storage.
     guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
 
+    //Visualizar nueva receta/array modificado en la aplicación.
     generarTablaDeRecetas();
-
 }
 
 //Permite modificar recetas en el array "recetasGuardadas". Indicar el índice dentro del array.
