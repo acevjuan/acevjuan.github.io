@@ -12,17 +12,17 @@ function generarTablaDeRecetas() {
 
     let encabezadoRecetas = document.createElement('thead');
     encabezadoRecetas.innerHTML = `
-             <tr class="recetas-guardadas__encabezado">
-                 <th class="recetas-guardadas__encabezado__index">ID</th>
-                 <th class="recetas-guardadas__encabezado__nombre">NOMBRE</th>
-                 <th class="recetas-guardadas__encabezado__extracto-original">EXTRACTO ORIGINAL, ºP</th>
-                 <th class="recetas-guardadas__encabezado__volumen">VOLUMEN, L</th>
-                 <th class="recetas-guardadas__encabezado__cantidad-malta">CANTIDAD DE MALTA, kg</th>
-                 <th class="recetas-guardadas__encabezado__extracto-malta">EXTRACTO DE MALTA, %</th>
-                 <th class="recetas-guardadas__encabezado__humedad-malta">HUMEDAD DE MALTA, %</th>
-                 <th></th>
-                 <th></th>
-             </tr> `
+            <tr class="recetas-guardadas__encabezado">
+                <th class="recetas-guardadas__encabezado__index">ID</th>
+                <th class="recetas-guardadas__encabezado__nombre">NOMBRE</th>
+                <th class="recetas-guardadas__encabezado__extracto-original">EXTRACTO ORIGINAL, ºP</th>
+                <th class="recetas-guardadas__encabezado__volumen">VOLUMEN, L</th>
+                <th class="recetas-guardadas__encabezado__cantidad-malta">CANTIDAD DE MALTA, kg</th>
+                <th class="recetas-guardadas__encabezado__extracto-malta">EXTRACTO DE MALTA, %</th>
+                <th class="recetas-guardadas__encabezado__humedad-malta">HUMEDAD DE MALTA, %</th>
+                <th></th>
+                <th></th>
+            </tr> `
     
     recetas.appendChild(encabezadoRecetas);
 
@@ -48,18 +48,12 @@ function generarTablaDeRecetas() {
         btnEliminar.addEventListener('click', () => {
             deleteFromStorage(index)
         })
+
+        const btnModificar = document.querySelector(`#btn-mod-${numFila}`);
+        btnModificar.addEventListener('click', () => {
+            updateStorage(index);
+        })
     })
-
-
-    for(let i = 1; i <= recetasGuardadas.length; i++) {
-        let btnMod = document.querySelector(`#btn-mod-${i}`);
-        btnMod = addEventListener('click', () => console.log('Funciona'));
-    }    
-    
-    for(let j = 1; j <= recetasGuardadas.length; j++) {
-        let btnEli = document.querySelector(`#btn-eli-${j}`);
-        btnEli = addEventListener('click', () => console.log('Tambien funciona'));
-    }
 }
 
 //Realiza el cálculo de cebada malteada requerida para la receta deseada por el usuario y guarda la misma dentro del array "recetasGuardadas".
@@ -100,8 +94,41 @@ function crearReceta() {
     generarTablaDeRecetas();
 }
 
+
+function updateStorage(recetaModificar) {
+    let eo = parseFloat(prompt('¿Cuánto es el nuevo extracto original deseado? (entre 0 y 1):'));
+    let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
+    let extMal = parseFloat(prompt('¿Cuál es el nuevo extracto de la malta a utilizar? (entre 0 y 1):'));
+    let hMal = parseFloat(prompt('¿Cuál es la nueva humedad de la malta? (entre 0 y 1):'));
+
+    //Calculo de gravedad específica.
+    let sg = ((eo * 4)/1000) + 1;
+
+    //Cálculo de cantidad de malta necesaria para la receta (kilogramos).
+    let cantMal = (vol * sg * densidadAgua * eo) / (extMal * (1 - hMal) * eficiencia);
+
+    let confirmacionModificar = confirm('¿Modificar receta?');
+    if(confirmacionModificar === true) {
+        localStorage.removeItem('listadoRecetas');
+
+        recetasGuardadas[recetaModificar].extractoOriginal = eo;
+        recetasGuardadas[recetaModificar].volumen = vol;
+        recetasGuardadas[recetaModificar].extractoMalta = extMal;
+        recetasGuardadas[recetaModificar].humedadMalta = hMal;
+        recetasGuardadas[recetaModificar].cantidadMalta = cantMal;
+
+        guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
+
+        Swal.fire('Receta modificada con éxito');
+
+        console.table(recetasGuardadas);
+
+        generarTablaDeRecetas();
+    }
+}
+
 //Permite modificar recetas en el array "recetasGuardadas". Indicar el índice dentro del array.
-function modificarReceta() {
+/*function modificarReceta() {
     let recetaModificar = parseInt(prompt('Indicar el ID de la receta a modificar')) - 1;
     if (recetaModificar < recetasGuardadas.length) {
         let eo = parseFloat(prompt('¿Cuánto es el nuevo extracto original deseado? (entre 0 y 1):'));
@@ -138,7 +165,7 @@ function modificarReceta() {
     console.table(recetasGuardadas);
 
     generarTablaDeRecetas();
-}
+} */
 
 //Permite eliminar recetas en el array "recetasGuardadas". Se agrega como evento a su botón de eliminar correspondiente.
 function deleteFromStorage (recetaEliminar) {
