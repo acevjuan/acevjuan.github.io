@@ -12,17 +12,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
 </head>
+
 <body>
+    <!-- Título de la aplicación -->
     <h1>Calculador de receta de cervezas</h1>
 
+    <!-- Botones para creación, modificación y eliminación de recetas en listado -->
+    <!-- La idea es que la opción "eliminar" y "modificar" se genere para cada receta de forma individual, sin tener que indicar el ID como se hace actualmente -->
     <div class="botones">
-        <a class="btn btn-secondary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Crear receta
-        </a>
+        <a id="boton-crear-receta" class="botones__boton-crear-receta btn btn-secondary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Crear receta</a>
         <button id="boton-modificar-receta" class="btn btn-secondary btn-sm">Modificar receta</button>
         <button id="boton-eliminar-receta" class="btn btn-secondary btn-sm">Eliminar receta</button>
         
-        <!-- CREACIÓN DE RECETA -->
+        <!-- Formulario de creación de receta -->
         <div class="collapse" id="collapseExample">
             <form>
                 <div class="row mb-3">
@@ -61,19 +63,21 @@
         </div>
     </div>
 
+    <!-- Tabla en donde se mostrarán las recetas guardadas junto con el cálculo final de kg de matal requeridos -->
     <table class="recetas-guardadas table">
 
     </table>
 
+    <!-- Guía de recetas comunes de cervezas y extracto original recomendado para su elaboración. La información es generada a través de un archivo json que simula la obtención de la información por medio de una API -->
     <div class="guia-extractos__informacion">
         <h3>GUÍA DE EXTRACTO ORIGINAL</h3>
         <p>En la siguiente tabla se relaciona a modo de referencia los rangos de extracto original recomendados para la elaboración de algunos estilos de cervezas más comunes:</p>
+        <table class="guia-extractos table">
+        
+        </table>
     </div>
 
-    <table class="guia-extractos table">
-        
-    </table>
-
+    <!-- Instrucciones de cómo usar la aplicación y cómo funciona -->
     <div class="instrucciones">
         <h2>INSTRUCCIONES</h2>
         <p>Este programa permite crear, calcular y guardar recetas de cervezas.</p>
@@ -87,6 +91,7 @@
         </ul>
     </div>
 
+    <!-- Vinculación de JavaScript en la aplicación -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/variables.js"></script>
     <script src="js/clases.js"></script>
