@@ -1,7 +1,7 @@
 //Guarda la información generada en la creación, modificación o eliminación de recetas en el Local Storage
 //"guardarLocal" se ejecuta dentro de las demás funciones cada vez que exista alguna modificación en el array "recetasGuardadas"
 function guardarLocal(clave, valor) { 
-     localStorage.setItem(clave, valor);
+    localStorage.setItem(clave, valor);
 }
 
 //Genera tabla para visualizar en aplicación
@@ -26,7 +26,6 @@ function generarTablaDeRecetas() {
     
     recetas.appendChild(encabezadoRecetas);
 
-    
     recetasGuardadas.forEach((rec, index) => {
         let container = document.createElement('tbody');
         let numFila = index + 1;
@@ -59,11 +58,11 @@ function generarTablaDeRecetas() {
 //Realiza el cálculo de cebada malteada requerida para la receta deseada por el usuario y guarda la misma dentro del array "recetasGuardadas".
 function crearReceta() {
     //Al inicio del proyecto, los datos para el cálculo de recetas se introducían por medio de prompts. Esta opción fue reemplazada por medio de un formulario, sin embargo, se deja como guía en caso de que se vaya a usar alguna librería que funcione de forma similar.
-        // let nombreCerveza = prompt('Indicar el nombre de la cerveza:');
-        // let eo = parseFloat(prompt('¿Cuánto es el extracto original deseado? (entre 0 y 1):'));
-        // let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
-        // let extMal = parseFloat(prompt('¿Cuál es el extracto de la malta a utilizar? (entre 0 y 1):'));
-        // let hMal = parseFloat(prompt('¿Cuál es la humedad de la malta? (entre 0 y 1):'));
+    // let nombreCerveza = prompt('Indicar el nombre de la cerveza:');
+    // let eo = parseFloat(prompt('¿Cuánto es el extracto original deseado? (entre 0 y 1):'));
+    // let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
+    // let extMal = parseFloat(prompt('¿Cuál es el extracto de la malta a utilizar? (entre 0 y 1):'));
+    // let hMal = parseFloat(prompt('¿Cuál es la humedad de la malta? (entre 0 y 1):'));
 
     //Obtención de datos ingresados por el usuario para el cálculo de receta
     let nombreCerveza = document.querySelector('#nombre').value;
@@ -94,7 +93,7 @@ function crearReceta() {
     generarTablaDeRecetas();
 }
 
-
+//Permite modificar recetas en el array "recetasGuardadas". Indicar el índice dentro del array.
 function updateStorage(recetaModificar) {
     let eo = parseFloat(prompt('¿Cuánto es el nuevo extracto original deseado? (entre 0 y 1):'));
     let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
@@ -126,46 +125,6 @@ function updateStorage(recetaModificar) {
         generarTablaDeRecetas();
     }
 }
-
-//Permite modificar recetas en el array "recetasGuardadas". Indicar el índice dentro del array.
-/*function modificarReceta() {
-    let recetaModificar = parseInt(prompt('Indicar el ID de la receta a modificar')) - 1;
-    if (recetaModificar < recetasGuardadas.length) {
-        let eo = parseFloat(prompt('¿Cuánto es el nuevo extracto original deseado? (entre 0 y 1):'));
-        let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
-        let extMal = parseFloat(prompt('¿Cuál es el nuevo extracto de la malta a utilizar? (entre 0 y 1):'));
-        let hMal = parseFloat(prompt('¿Cuál es la nueva humedad de la malta? (entre 0 y 1):'));
-
-        //Calculo de gravedad específica.
-        let sg = ((eo * 4)/1000) + 1;
-
-        //Cálculo de cantidad de malta necesaria para la receta (kilogramos).
-        let cantMal = (vol * sg * densidadAgua * eo) / (extMal * (1 - hMal) * eficiencia);
-
-        let confirmacionModificar = confirm('¿Modificar receta?');
-        if(confirmacionModificar === true) {
-            localStorage.removeItem('listadoRecetas');
-
-            recetasGuardadas[recetaModificar].extractoOriginal = eo;
-            recetasGuardadas[recetaModificar].volumen = vol;
-            recetasGuardadas[recetaModificar].extractoMalta = extMal;
-            recetasGuardadas[recetaModificar].humedadMalta = hMal;
-            recetasGuardadas[recetaModificar].cantidadMalta = cantMal;
-
-            guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
-
-            Swal.fire('Receta modificada con éxito');
-            
-        } else {
-            Swal.fire('Proceso finalizado. No existen cambios');
-        }
-    } else {
-        Swal.fire('Proceso finalizado. No existen cambios');
-    }
-    console.table(recetasGuardadas);
-
-    generarTablaDeRecetas();
-} */
 
 //Permite eliminar recetas en el array "recetasGuardadas". Se agrega como evento a su botón de eliminar correspondiente.
 function deleteFromStorage (recetaEliminar) {

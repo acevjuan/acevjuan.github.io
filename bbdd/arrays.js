@@ -14,8 +14,7 @@ let recetasGuardadas = [
 ]
 
 //Sincronización del Local Storage con el array 'recetasGuardadas'.
-
-//Verificar si existe información almacenada en Local Storage
+//Verifica si existe información almacenada en Local Storage
 let recetasGuardadasLS = JSON.parse(localStorage.getItem('listadoRecetas'));
 
 //Si no existe información guardada en el Local Storage, la aplicación trabajará con el array "recetasGuardadas" vacío. En caso contrario, el array tomará la informaci´pn guardada en el Local Storage y la almacenará dentro del array"
