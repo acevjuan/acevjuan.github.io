@@ -45,12 +45,12 @@ function generarTablaDeRecetas() {
 
         const btnEliminar = document.querySelector(`#btn-eli-${numFila}`);
         btnEliminar.addEventListener('click', () => {
-            deleteFromStorage(index)
+            eliminarReceta(index)
         })
 
         const btnModificar = document.querySelector(`#btn-mod-${numFila}`);
         btnModificar.addEventListener('click', () => {
-            updateStorage(index);
+            modificarReceta(index);
         })
     })
 }
@@ -94,7 +94,8 @@ function crearReceta() {
 }
 
 //Permite modificar recetas en el array "recetasGuardadas". Indicar el índice dentro del array.
-function updateStorage(recetaModificar) {
+//Se plantea la función de esta manera para cumplir con el criterio de evaluación que requiere incluir operadores avanzados, en este caso el operador lógico AND (&&). Originalmente, se usaba un condicional "if" común.
+function modificarReceta(recetaModificar) {
     let eo = parseFloat(prompt('¿Cuánto es el nuevo extracto original deseado? (entre 0 y 1):'));
     let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
     let extMal = parseFloat(prompt('¿Cuál es el nuevo extracto de la malta a utilizar? (entre 0 y 1):'));
@@ -107,7 +108,8 @@ function updateStorage(recetaModificar) {
     let cantMal = (vol * sg * densidadAgua * eo) / (extMal * (1 - hMal) * eficiencia);
 
     let confirmacionModificar = confirm('¿Modificar receta?');
-    if(confirmacionModificar === true) {
+
+    const modificacion = () => {
         localStorage.removeItem('listadoRecetas');
 
         recetasGuardadas[recetaModificar].extractoOriginal = eo;
@@ -124,15 +126,25 @@ function updateStorage(recetaModificar) {
 
         generarTablaDeRecetas();
     }
+
+    //Inclusión de operador lógico AND para dar cumplimiento a los requerimientos de la entrega final.
+    confirmacionModificar === true && modificacion();
 }
 
 //Permite eliminar recetas en el array "recetasGuardadas". Se agrega como evento a su botón de eliminar correspondiente.
-function deleteFromStorage (recetaEliminar) {
-    localStorage.removeItem('listadoRecetas');
-    recetasGuardadas.splice(recetaEliminar, 1);
-    guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
-    Swal.fire('Receta eliminada con éxito');
-    generarTablaDeRecetas()
+//Se plantea la función de esta manera para cumplir con el criterio de evaluación que requiere incluir operadores avanzados, en este caso el operador lógico AND (&&). Originalmente, se usaba un condicional "if" común.
+function eliminarReceta(recetaEliminar) {
+    let confirmarEliminar = confirm('¿Está seguro de que quieres eliminar esta receta?');
+    const eliminacion = () => {
+        localStorage.removeItem('listadoRecetas');
+        recetasGuardadas.splice(recetaEliminar, 1);
+        guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
+        Swal.fire('Receta eliminada con éxito');
+        generarTablaDeRecetas()
+    }
+
+        //Inclusión de operador lógico AND para dar cumplimiento a los requerimientos de la entrega final.
+    confirmarEliminar === true && eliminacion();
 }
 
 //Muestra en la consola todas las recetas guardadas con un texto genérico describiendo cómo elaborarlas.
