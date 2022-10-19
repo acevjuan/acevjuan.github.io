@@ -19,45 +19,55 @@
     <!-- Botones para creación, modificación y eliminación de recetas en listado -->
     <!-- La idea es que la opción "eliminar" y "modificar" se genere para cada receta de forma individual, sin tener que indicar el ID como se hace actualmente -->
     <div class="botones">
-        <a id="boton-crear-receta" class="botones__boton-crear-receta btn btn-secondary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Crear receta</a>
-        
-        <!-- Formulario de creación de receta -->
-        <div class="collapse" id="collapseExample">
-            <form>
-                <div class="row mb-3">
-                  <label for="nombre" class="col-sm-2 col-form-label">Nombre de la cerveza</label>
+      <button id="boton-crear-receta" type="button" class="botones__boton-crear-receta btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Crear receta</button>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Creación de nueva receta</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="row mb-6">
+                  <label for="nombre" class="col-sm-6 col-form-label">Nombre de la cerveza</label>
                   <div class="col-sm-10">
                     <input id="nombre" type="text" class="form-control" autocomplete="off">
                   </div>
                 </div>
-                <div class="row mb-3">
-                    <label for="extracto" class="col-sm-2 col-form-label">Extracto original, ºP</label>
-                    <div class="col-sm-10">
-                      <input id="extracto" type="number" min='1' max='100' class="form-control" autocomplete="off">
-                    </div>
+                <div class="row mb-6">
+                  <label for="extracto" class="col-sm-6 col-form-label">Extracto original, ºP</label>
+                  <div class="col-sm-10">
+                    <input id="extracto" type="number" min='1' max='100' class="form-control" autocomplete="off">
                   </div>
-                <div class="row mb-3">
-                    <label for="volumen" class="col-sm-2 col-form-label">Volumen, L</label>
-                    <div class="col-sm-10">
-                      <input id="volumen" type="number" class="form-control" autocomplete="off">
-                    </div>
                 </div>
-                <div class="row mb-3">
-                    <label for="ext-mal" class="col-sm-2 col-form-label">Extracto de malta, %</label>
-                    <div class="col-sm-10">
-                      <input id="ext-mal" type="number" class="form-control" autocomplete="off">
-                    </div>
+                <div class="row mb-6">
+                  <label for="volumen" class="col-sm-6 col-form-label">Volumen, L</label>
+                  <div class="col-sm-10">
+                    <input id="volumen" type="number" class="form-control" autocomplete="off">
+                  </div>
                 </div>
-                <div class="row mb-3">
-                    <label for="humedad" class="col-sm-2 col-form-label">Humedad de malta, %</label>
-                    <div class="col-sm-10">
-                      <input id="humedad" type="number" class="form-control" autocomplete="off">
-                    </div>
+                <div class="row mb-6">
+                  <label for="ext-mal" class="col-sm-6 col-form-label">Extracto de malta, %</label>
+                  <div class="col-sm-10">
+                    <input id="ext-mal" type="number" class="form-control" autocomplete="off">
+                  </div>
                 </div>
-            </form>
-            <button id="boton-crear-receta-enviar" class="btn btn-secondary btn-sm">Crear</button>
-            <button id="boton-crear-receta-cancelar" class="btn btn-secondary btn-sm">Cancelar</button>
+                <div class="row mb-6">
+                  <label for="humedad" class="col-sm-4 col-form-label">Humedad de malta, %</label>
+                  <div class="col-sm-10">
+                    <input id="humedad" type="number" class="form-control" autocomplete="off">
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button id="boton-crear-receta-enviar" type="button" class="btn btn-primary">Crear</button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Tabla en donde se mostrarán las recetas guardadas junto con el cálculo final de kg de matal requeridos -->
