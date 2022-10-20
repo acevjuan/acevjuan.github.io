@@ -57,13 +57,6 @@ function generarTablaDeRecetas() {
 
 //Realiza el cálculo de cebada malteada requerida para la receta deseada por el usuario y guarda la misma dentro del array "recetasGuardadas".
 function crearReceta() {
-    //Al inicio del proyecto, los datos para el cálculo de recetas se introducían por medio de prompts. Esta opción fue reemplazada por medio de un formulario, sin embargo, se deja como guía en caso de que se vaya a usar alguna librería que funcione de forma similar.
-    // let nombreCerveza = prompt('Indicar el nombre de la cerveza:');
-    // let eo = parseFloat(prompt('¿Cuánto es el extracto original deseado? (entre 0 y 1):'));
-    // let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
-    // let extMal = parseFloat(prompt('¿Cuál es el extracto de la malta a utilizar? (entre 0 y 1):'));
-    // let hMal = parseFloat(prompt('¿Cuál es la humedad de la malta? (entre 0 y 1):'));
-
     //Obtención de datos ingresados por el usuario para el cálculo de receta
     let nombreCerveza = document.querySelector('#nombre').value;
     let eo = document.querySelector('#extracto').value / 100;
@@ -159,7 +152,7 @@ function eliminarReceta(recetaEliminar) {
     })
 }
 
-//Muestra en la consola todas las recetas guardadas con un texto genérico describiendo cómo elaborarlas.
+//Muestra en la consola todas las recetas guardadas con un texto genérico describiendo cómo elaborarlas. Utilizado para desafío de iteraciones, se deja en proyecto final en caso de requerir el uso de "for".
 function imprimirRecetas() {
     for(let i = 0; i < recetasGuardadas.length; i++) {
         console.log(`Para elaborar ${recetasGuardadas[i].volumen} litros (L) de la cerveza ${recetasGuardadas[i].nombre} con extracto original de ${recetasGuardadas[i].extractoOriginal * 100} ºP, se requiere ${recetasGuardadas[i].cantidadMalta} kg de cebada malteada`);
