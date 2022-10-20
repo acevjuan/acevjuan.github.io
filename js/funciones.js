@@ -134,17 +134,29 @@ function modificarReceta(recetaModificar) {
 //Permite eliminar recetas en el array "recetasGuardadas". Se agrega como evento a su botón de eliminar correspondiente.
 //Se plantea la función de esta manera para cumplir con el criterio de evaluación que requiere incluir operadores avanzados, en este caso el operador lógico AND (&&). Originalmente, se usaba un condicional "if" común.
 function eliminarReceta(recetaEliminar) {
-    let confirmarEliminar = confirm('¿Está seguro de que quieres eliminar esta receta?');
     const eliminacion = () => {
         localStorage.removeItem('listadoRecetas');
         recetasGuardadas.splice(recetaEliminar, 1);
         guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
         Swal.fire('Receta eliminada con éxito');
+        Swal.fire(
+            'Receta eliminada con éxito',
+        )
         generarTablaDeRecetas()
     }
-
+    Swal.fire({
+        title: '¿Estás seguro de que quieres eliminar la receta?',
+        text: "No podrás revertir esta acción",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
         //Inclusión de operador lógico AND para dar cumplimiento a los requerimientos de la entrega final.
-    confirmarEliminar === true && eliminacion();
+        result.isConfirmed === true && eliminacion();
+    })
 }
 
 //Muestra en la consola todas las recetas guardadas con un texto genérico describiendo cómo elaborarlas.
