@@ -21,7 +21,6 @@ function generarTablaDeRecetas() {
                 <th class="recetas-guardadas__encabezado__extracto-malta">EXTRACTO DE MALTA, %</th>
                 <th class="recetas-guardadas__encabezado__humedad-malta">HUMEDAD DE MALTA, %</th>
                 <th></th>
-                <th></th>
             </tr> `
     
     recetas.appendChild(encabezadoRecetas);
@@ -80,6 +79,7 @@ function crearReceta() {
     //Visualizar nueva receta/array modificado en la aplicación.
     generarTablaDeRecetas();
 
+    //Resetear información en el formulario de creación de receta.
     document.querySelector('#nombre').value = '';
     document.querySelector('#extracto').value = '';
     document.querySelector('#volumen').value = '';
