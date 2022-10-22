@@ -5,11 +5,11 @@ let recetasGuardadas = [
     Ejemplo de receta.
     {
     nombre: 'PILSEN',
-    extractoOriginal: 0.125, //Porcentaje entre 0 y 1.
-    volumen: 30500, //Litros.
-    cantidadMalta: 5200, //Kilogramos.
-    extractoMalta: 0.8, //Porcentaje entre 0 y 1.
-    humedadMalta: 0.04 //Porcentaje entre 0 y 1.
+    extractoOriginal: 11.5,
+    volumen: 100,
+    cantidadMalta: 35,
+    extractoMalta: 8,
+    humedadMalta: 5
     }*/
 ]
 
