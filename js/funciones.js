@@ -71,7 +71,7 @@ function crearReceta() {
     let cantMal = Math.round((vol * sg * densidadAgua * eo) / (extMal * (1 - hMal) * eficiencia));
 
     //Inclusión de receta calculada dentro del array principal "recetasGuardadas"
-    recetasGuardadas.push(new Recetas(nombreCerveza, eo, vol, cantMal, extMal, hMal));
+    recetasGuardadas.push(new Recetas(nombreCerveza, eo * 100, vol, cantMal, extMal * 100, hMal * 100));
 
     //Alerta/notificación de proceso de creación de receta exitoso.
     Swal.fire('Receta creada con éxtito')
@@ -84,6 +84,12 @@ function crearReceta() {
 
     //Visualizar nueva receta/array modificado en la aplicación.
     generarTablaDeRecetas();
+
+    document.querySelector('#nombre').value = '';
+    document.querySelector('#extracto').value = '';
+    document.querySelector('#volumen').value = '';
+    document.querySelector('#ext-mal').value = '';
+    document.querySelector('#humedad').value = '';
 }
 
 //Permite modificar recetas en el array "recetasGuardadas". Indicar el índice dentro del array.
