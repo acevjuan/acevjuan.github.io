@@ -3,18 +3,23 @@
     margin: 0;
 }
 
+body {
+    display: flex;
+    justify-content: center;
+}
+
 .botones {
-    padding: 25px 0;
+    padding: 0.5rem 0;
 }
 
 .recetas-guardadas {
-    padding: 25px 0;
-    margin: 25px 0;
+    padding: 2rem 0;
+    margin: 2rem 0;
 }
 
 .instrucciones {
-    padding: 25px 0;
-    margin: 25px 0;
+    padding: 1rem 0;
+    margin: 1rem 0;
 }
 
 .guia-extractos__informacion {
