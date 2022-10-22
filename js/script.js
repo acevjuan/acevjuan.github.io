@@ -7,6 +7,8 @@ const guiaExtractos = document.querySelector('.guia-extractos');
 
 generarTablaDeRecetas();
 
+//Inclusión de guía de extractos originales a modo de información para el usuario.
+//Simulando una solicitud al servidor a través de un archivo local json.
 fetch('bbdd/guia-extracto-original.json')
     .then((response) => response.json())
     .then((data)=> {

@@ -138,9 +138,6 @@ function eliminarReceta(recetaEliminar) {
         recetasGuardadas.splice(recetaEliminar, 1);
         guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
         Swal.fire('Receta eliminada con éxito');
-        Swal.fire(
-            'Receta eliminada con éxito',
-        )
         generarTablaDeRecetas()
     }
     Swal.fire({
@@ -148,8 +145,8 @@ function eliminarReceta(recetaEliminar) {
         text: "No podrás revertir esta acción",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#765664',
+        cancelButtonColor: '#765664',
         confirmButtonText: 'Sí, eliminar',
         cancelButtonText: 'Cancelar'
     }).then((result) => {
