@@ -38,7 +38,6 @@ function generarTablaDeRecetas() {
                     <td class="recetas-guardadas__receta__cantidad-malta">${rec.cantidadMalta}</td>
                     <td class="recetas-guardadas__receta__extracto-malta">${rec.extractoMalta}</td>
                     <td class="recetas-guardadas__receta__humedad-malta">${rec.humedadMalta}</td>
-                    <td><button id="btn-mod-${numFila}" class="btn btn-secondary btn-sm">Modificar</button></td>
                     <td><button id="btn-eli-${numFila}" value="${numFila}" class="btn btn-secondary btn-sm">Eliminar</button></td>
                 </tr>`
         recetas.appendChild(container);
@@ -48,10 +47,6 @@ function generarTablaDeRecetas() {
             eliminarReceta(index)
         })
 
-        const btnModificar = document.querySelector(`#btn-mod-${numFila}`);
-        btnModificar.addEventListener('click', () => {
-            modificarReceta(index);
-        })
     })
 }
 
@@ -90,44 +85,6 @@ function crearReceta() {
     document.querySelector('#volumen').value = '';
     document.querySelector('#ext-mal').value = '';
     document.querySelector('#humedad').value = '';
-}
-
-//Permite modificar recetas en el array "recetasGuardadas". Indicar el índice dentro del array.
-//Se plantea la función de esta manera para cumplir con el criterio de evaluación que requiere incluir operadores avanzados, en este caso el operador lógico AND (&&). Originalmente, se usaba un condicional "if" común.
-function modificarReceta(recetaModificar) {
-    let eo = parseFloat(prompt('¿Cuánto es el nuevo extracto original deseado? (entre 0 y 1):'));
-    let vol = parseFloat(prompt('¿Cuántos litros de cerveza quieres elaborar?:'));
-    let extMal = parseFloat(prompt('¿Cuál es el nuevo extracto de la malta a utilizar? (entre 0 y 1):'));
-    let hMal = parseFloat(prompt('¿Cuál es la nueva humedad de la malta? (entre 0 y 1):'));
-
-    //Calculo de gravedad específica.
-    let sg = ((eo * 4)/1000) + 1;
-
-    //Cálculo de cantidad de malta necesaria para la receta (kilogramos).
-    let cantMal = (vol * sg * densidadAgua * eo) / (extMal * (1 - hMal) * eficiencia);
-
-    let confirmacionModificar = confirm('¿Modificar receta?');
-
-    const modificacion = () => {
-        localStorage.removeItem('listadoRecetas');
-
-        recetasGuardadas[recetaModificar].extractoOriginal = eo;
-        recetasGuardadas[recetaModificar].volumen = vol;
-        recetasGuardadas[recetaModificar].extractoMalta = extMal;
-        recetasGuardadas[recetaModificar].humedadMalta = hMal;
-        recetasGuardadas[recetaModificar].cantidadMalta = cantMal;
-
-        guardarLocal('listadoRecetas', JSON.stringify(recetasGuardadas));
-
-        Swal.fire('Receta modificada con éxito');
-
-        console.table(recetasGuardadas);
-
-        generarTablaDeRecetas();
-    }
-
-    //Inclusión de operador lógico AND para dar cumplimiento a los requerimientos de la entrega final.
-    confirmacionModificar === true && modificacion();
 }
 
 //Permite eliminar recetas en el array "recetasGuardadas". Se agrega como evento a su botón de eliminar correspondiente.
